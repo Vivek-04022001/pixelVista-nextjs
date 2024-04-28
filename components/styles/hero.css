@@ -1,0 +1,32 @@
+
+
+.primary__btn,
+.secondary__btn {
+  @apply py-3 px-6  outline-none text-white rounded-md cursor-pointer;
+}
+
+.primary__btn {
+  @apply bg-secondary border border-primary;
+}
+
+.secondary__btn {
+  @apply bg-primary;
+}
+
+@media only screen and (max-width: 992px) {
+  .hero__content h2 {
+    font-size: 1.8rem;
+    line-height: 50px;
+  }
+}
+
+/* Apply a 16:9 aspect ratio to the container */
+.responsive-video {
+  @apply aspect-video
+}
+
+/* Set the iframe inside the container to take up the full space */
+.responsive-video iframe {
+  width: 100%;
+  height: 100%;
+}

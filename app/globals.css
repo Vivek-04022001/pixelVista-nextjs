@@ -1,33 +1,206 @@
+/* google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* css variables */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+  --primary-color: #379cf6; /* Primary Color: Dodger Blue */
+  --heading-color: #fff; /* Heading Color: White */
+  --btn-primary-bg: #379cf6; /* Button Primary Background: Dodger Blue */
+  --btn-secondary-bg: #090238; /* Button Secondary Background: Dark Blue */
+  --hamburger-color: #fff; /* Hamburger Color: White */
+  --team-card-bg: #1b2352; /* Team Card Background: Navy Blue */
+  --link-color: #fff; /* Link Color: White */
+  --link-active: #379cf6; /* Active Link Color: Dodger Blue */
+  --body-bg: #00000d;
+  --card-bg: linear-gradient(
+    to right,
+    #1a11e7,
+    #0034d6,
+    #0645c2,
+    #2d50a9,
+    #45588e
+  );
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --counter-color: linear-gradient(
+    90deg,
+    #02bba6 30%,
+    rgba(29, 129, 176, 1) 55%,
+    rgba(35, 93, 173, 1) 75%
+  );
+
+  --newsletter-bg: linear-gradient(
+    to right top,
+    #1149e7,
+    #134ae2,
+    #164bde,
+    #194bd9,
+    #1c4cd4
+  );
+
+  --testimonial-bg: #1a0f4f;
+  --font-name: "Roboto", sans-serif;
+  --small-text-color: rgba(255, 255, 255, 0.774);
+  --icon-bg: #151e4f;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  /* outline: 1px solid yellow; */
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply overflow-x-hidden bg-backgroundColor ;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.Container {
+  @apply container mx-auto mb-6 md:mb-16 max-w-6xl px-6 py-4;
+}
+
+.heading {
+  @apply text-white;
+}
+
+.heading-md {
+  @apply mx-auto max-w-3xl text-center text-3xl font-extrabold md:text-4xl lg:text-5xl;
+}
+
+.heading-lg {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+}
+
+/* text-gradient */
+.counter-gradient {
+  @apply bg-gradient-to-r from-teal-400 via-blue-600 to-indigo-700 bg-clip-text text-transparent !important;
+}
+
+/* only gradient */
+.newsletter-gradient {
+  @apply bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400;
+}
+
+.normal-gradient {
+  @apply bg-gradient-to-r from-teal-400 via-blue-600 to-indigo-700;
+}
+
+.card-gradient {
+  @apply bg-gradient-to-r from-indigo-800 via-blue-700 to-blue-500;
+}
+
+.highlight {
+  @apply text-primary;
+}
+
+.text-clip {
+  @apply bg-clip-text text-transparent;
+}
+
+.pricing-card-container {
+  @apply mx-auto flex w-full flex-col rounded-lg border border-gray-100 bg-gray-800  p-6 text-center text-white shadow md:max-w-lg xl:p-8;
+}
+
+.pricing-card-container-best {
+  @apply mx-auto flex w-full flex-col rounded-lg border border-primary bg-primary/20  bg-gradient-to-b 
+  from-secondary via-primary/40 to-accent p-4
+  text-center text-white shadow md:max-w-lg xl:p-8;
+}
+
+/* lazy images */
+
+.blur-load {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.blur-load::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
   }
+  50% {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+}
+.blur-load.loaded > img {
+  opacity: 1;
+}
+.blur-load.loaded::before {
+  content: none;
+  animation: none;
+}
+
+.blur-load > img {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  object-position: center;
+  object-fit: cover;
+}
+
+/* other page layout */
+.Container-other {
+  @apply mx-auto min-h-screen max-w-3xl space-y-8 pb-10 pt-20 font-mono px-3 md:px-0 text-white;
+}
+
+.other-heading {
+  @apply text-center text-6xl;
+}
+
+.Container-other > div {
+  line-height: 2.7;
+  font-size: 1.1rem;
+}
+
+.Container-other h2 {
+  @apply highlight mt-6 font-bold underline;
+}
+.Container-other h4 {
+  @apply ml-4 font-bold underline;
+}
+.Container-other ul {
+  @apply list-decimal;
+}
+
+.Container-other  p{
+  @apply mt-4
+}
+.Container-other strong {
+  @apply font-extrabold underline;
+}
+
+/* scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: blue;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  @apply bg-backgroundColor;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-primary;
 }
